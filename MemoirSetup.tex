@@ -1,0 +1,518 @@
+%---------------------------------------------------------------------------%
+%------------------------ Text configuration -------------------------------%
+%---------------------------------------------------------------------------%
+\usepackage[english, danish]{babel} % Language package
+
+\usepackage[utf8]{inputenc} 		% Input encoding - Depending on editor
+\usepackage{lmodern} 				% Modern LaTeX font
+\usepackage[T1]{fontenc} 			% Hyphenation
+\usepackage{textcomp} 				% Symbols package
+\usepackage{gensymb} 				% Provides generic commands \degree, \celsius, \perthousand, \micro and \ohm
+\usepackage{ragged2e,anyfontsize} 	% Adjust text
+\usepackage{relsize}				% Relativ font size change
+
+
+\setlength\parindent{0pt} 			% No indent
+\setlength\parskip{12pt} 			% More than a single line break will give ONE linebreak.
+
+
+
+%---------------------------------------------------------------------------%
+%-------------------------- Tables and lists -------------------------------%
+%---------------------------------------------------------------------------%
+\usepackage{tabu}					% Tabu environment
+\usepackage{multirow} 				% To merge rows
+\usepackage{longtable}				% Show table over multiple pages.
+\usepackage{hhline} 				% Horizonal lines with 'multirow'
+% \usepackage[shortlabels]{enumitem}	% Options for enumerate and itemize
+\usepackage{color, colortbl}		% Colors in rows and cells
+
+\definecolor{gr}{gray}{0.9}
+
+% Example of usage:
+%--------------------------------------------------
+% \begin{table}
+% 	\begin{tabular}{ l c r }
+% 	  1 & 2 & 3 \\
+% 	  \rowcolor{gr} % This row will be gray
+% 	  4 & 5 & 6 \\
+% 	  7 & 8 & 9 \\
+% 	  \rowcolor{gr} % This row will be gray
+% 	  10 & 11 & 12 \\
+% 	\end{tabular}
+% \end{table}
+%--------------------------------------------------
+
+
+
+%---------------------------------------------------------------------------%
+%-------------------- UML diagrams directly in Latex -----------------------%
+%---------------------------------------------------------------------------%
+\usepackage{uml} 					% UML diagrams
+%\usepackage{MetaUML}				% UML diagrams
+\usepackage{tikz} 					% Graphical tool
+\usepackage[underline=true]{pgf-umlsd}
+\usetikzlibrary{arrows,shadows} 	% for pgf-umlsd
+
+
+%---------------------------------------------------------------------------%
+%---------------------------- Subfiles -------------------------------------%
+%---------------------------------------------------------------------------%
+% Use multiple files in the same document
+\usepackage{subfiles}
+
+% Begin each document as follow:
+%--------------------------------------------------
+%\documentclass[Name-Of-MasterFile]{subfiles}
+%\begin{document}
+%Content
+%\end{document}
+%--------------------------------------------------
+
+% In the master file include the following:
+%--------------------------------------------------
+%\subfile{NameOfSubfile}
+%--------------------------------------------------
+
+
+%---------------------------------------------------------------------------%
+%------------------------ Link and references ------------------------------%
+%---------------------------------------------------------------------------%
+%http://mirrors.dotsrc.org/ctan/macros/latex/required/tools/varioref.pdf
+\usepackage{color}	 		% Needed for color
+\usepackage{varioref} 		% Smarter references
+\usepackage{makeidx}		% Package for indexing word.
+\usepackage{hyperref}
+\hypersetup{ 
+	colorlinks	= true, 	% false: boxed links; true: colored links
+    urlcolor	= blue,		% Color of external links
+    linkcolor	= black, 	% Color of page numbers
+    citecolor	= blue,		% Citation color
+}
+
+% Example of usage:
+%--------------------------------
+% \url{http://www.wikibooks.org}
+% \href{http://www.wikibooks.org}{Wikibooks home}
+%--------------------------------
+
+%---------------------------------------------------------------------------%
+%------------------------ Cross references to documents --------------------%
+%---------------------------------------------------------------------------%
+\usepackage{xr}			% Cross references to other .aux files than the current file
+%\usepackage{nameref,zref-xr}
+%\zxrsetup{toltxlabel}
+\newcommand{\extref}[1]{\autoref{doc-#1} \autopageref{doc-#1}}
+
+% Examples of usage:
+%-------------------------
+% \externaldocument{Path/FileName}
+% \begin{document}
+% \ref{figure1}
+% \end{document}
+%-------------------------
+
+%---------------------------------------------------------------------------%
+%------------------------ FixMe options ------------------------------------%
+%---------------------------------------------------------------------------%
+% The FixMe package shows allows small notes in your files.
+% You will see them as a footnote and shown in a list.
+
+% Using 'final' instead of 'draft' will hide the notes and the list.
+\usepackage[footnote,draft,danish,silent,nomargin]{fixme}
+
+% Show a list of all \fxnote{} and \fixme{} is done with \listoffixmes
+
+% Example of usage:
+%--------------------------------------------------
+% This is some text. \fxnote{Remember to add more.}
+%--------------------------------------------------
+
+
+%---------------------------------------------------------------------------%
+%------------------------ Generel options ----------------------------------%
+%---------------------------------------------------------------------------%
+
+\usepackage{fix-cm} 		% Fix for cm
+\usepackage{lipsum} 		% Debugging text: \lipsum[1-2]
+\usepackage{epstopdf} 		% EMF to PDF conversion
+\usepackage{fixltx2e} 		% Fixes errors in the LaTeX-kernel
+\usepackage{epstopdf}		% Convert EPS to PDF files
+\usepackage{etex}			% Typesetting to replace TeX3
+
+
+
+%---------------------------------------------------------------------------%
+%------------------------ Microtype package --------------------------------%
+%---------------------------------------------------------------------------%
+% Small adjustments to the font
+% See http://www.khirevich.com/latex/microtype/ for explanation
+
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+
+
+\SetExtraKerning[unit=space]
+    {encoding={*}, family={bch}, series={*}, size={footnotesize,small,normalsize}}
+    {\textendash={400,400}, 			% en-dash, add more space around it
+     "28={ ,150}, 						% left bracket, add space from right
+     "29={150, }, 						% right bracket, add space from left
+     \textquotedblleft={ ,150}, 		% left quotation mark, space from right
+     \textquotedblright={150, }} 		% right quotation mark, space from left
+
+\SetTracking{encoding={*}, shape=sc}{40}
+\microtypecontext{spacing=nonfrench}
+
+\let\newTOC\tableofcontents
+\renewcommand{\tableofcontents}
+{
+	\microtypesetup{protrusion=false} 	% disables protrusion locally in the document
+	\newTOC			 					% prints Table of Contents
+	\microtypesetup{protrusion=true} 	% enables protrusion
+}
+
+
+%---------------------------------------------------------------------------%
+%------------------------ Figures ------------------------------------------%
+%---------------------------------------------------------------------------%
+\usepackage{caption}				% Set a caption around the figure
+\usepackage{float}					% Let location 'H' be an option
+\usepackage{graphicx}				% Additional figure options
+\usepackage{subfig}					% Captions for multiple figures
+\usepackage{wrapfig}				% Text around the figure
+\usepackage{rotating}				% Rotation of tables and figures
+\usepackage[section]{placeins}		% Figure appear before a new \section{}
+
+% Remove complains from Memoir regarding the caption and subcaption package.
+\makeatletter
+\newcommand\nocaptioninlist{\renewcommand\ext@figure{ll}}
+\makeatother
+
+% Subcaption
+\captionsetup[figure]{labelfont={bf,small},textfont={it,small}}
+\captionsetup[subfloat]{labelfont={bf,small},textfont={it,small},
+subrefformat=parens} 
+
+% Macro for referring to a subfigure
+\newcommand{\myfigref}[2]{~\ref{#1}.\subref{#2}}
+
+% Paths the pictures can be located
+% Path is relative to the Master document
+\graphicspath{
+	{../Figures/}
+	{Figures/}
+}
+
+% Example of usage:
+%--------------------------------------------------
+%\begin{figure}[hbtp]
+%\centering
+%\includegraphics[width =0.9 \textwidth]{filename-for-png}
+%\caption{Titel}
+%\label{fig:referenceNavn}
+%\end{figure}
+%--------------------------------------------------
+
+
+% Example of figure side-by-side
+%--------------------------------------------------
+% \begin{figure}[ht]
+% \centering
+% \subfloat[My first picture]{
+% 	\label{fig:mdleft}{
+% 		\includegraphics[width=0.4\textwidth]{my figure}}}
+% \hfill
+% \subfloat[My second picture]{
+% 	\label{fig:mdright}{
+% 		\includegraphics[width=0.4\textwidth]{my figure}}}
+
+% \caption{My two big pictures}
+% \label{fig:subfigures}
+% \end{figure}
+%--------------------------------------------------
+
+
+%--------------------------------------------------------------------------%
+%------------------------ Defining of colors ------------------------------%
+%--------------------------------------------------------------------------%
+\usepackage{xcolor} 	% Color package
+
+\definecolor{ase_blue}	{RGB}{10,	55,	 136}
+\definecolor{darkviolet}{rgb}{0.58, 0.0, 0.83}
+\definecolor{darkgreen}	{rgb}{0.0, 	0.2, 0.13}
+\definecolor{darkblue}	{rgb}{0.0, 	0.0, 0.55}
+\definecolor{darkgray}	{rgb}{0.66, 0.66,0.66}
+\definecolor{webblue}	{rgb}{0.0,	0.05,0.45}
+\definecolor{MyDarkBlue}{rgb}{0,	0.08,0.45}
+\definecolor{webred}	{rgb}{0.75,	0,	 0}
+
+%--------------------------------------------------------------------------%
+%------------------------ Defining of Bibliography ------------------------%
+%--------------------------------------------------------------------------%
+%\bibpunct[,]{[}{]}{;}{a}{,}{,} 	% For Natbib
+\usepackage{cite}			% Citation from bibliography
+\bibliographystyle{ieeetr}	% Style of bibliography - IEEE's standard
+
+
+
+%---------------------------------------------------------------------------%
+%------------------------ Margin setup -------------------------------------%
+%---------------------------------------------------------------------------%
+
+\setlrmarginsandblock{3.5cm}{2.5cm}{*}		% Left and right margin
+\setulmarginsandblock{3cm}{*}{1.2}			% Upper and lower margin
+\checkandfixthelayout[nearest]				% Applies the margins
+
+
+%--------------------------------------------------------------------------%
+%------------------------- PAGESTYLE - PROPERTIES -------------------------%
+%--------------------------------------------------------------------------%
+\usepackage{lastpage}		% Will show the last page number
+
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+
+% Text at buttom of page: "CurrectPage / LastPage"
+\newcommand{\footerText}{\thepage\xspace /\pageref{LastPage}}
+
+\makepagestyle{ase_report}								% New style
+\makeoddhead{ase_report}{}{\small\sffamily\leftmark}{}	% Header text, odd pages
+\makeoddfoot{ase_report}{}{\footerText}{}				% Footer text, odd pages
+\makeevenhead{ase_report}{}{\small\sffamily\leftmark}{}	% Header text, even pages
+\makeevenfoot{ase_report}{}{\footerText}{} 				% Footer text, even pages
+
+\makeatletter							% Create speciel macro
+\makepsmarks{ase_report}{%				% For normal pages
+  \renewcommand\chaptermark[1]{%		% Rewrite \chaptermark with 1 option
+    \markboth{%							% Left and right mark
+      \ifnum \value{secnumdepth} > 1 	% If section depth > 1 (subsection and below)
+	      \if@mainmatter 				% If in the main pages 			
+	      	\@chapapp\ \thechapter. \ 	% ... Chapter to appendix?
+	      \fi
+      \fi
+      ##1}{}}%
+  \renewcommand\tocmark{\markboth{\contentsname}{\contentsname}}%
+  \renewcommand\lofmark{\markboth{\listfigurename}{\listfigurename}}%
+  \renewcommand\lotmark{\markboth{\listtablename}{\listtablename}}%
+  \renewcommand\bibmark{\markboth{\bibname}{\bibname}}%
+  \renewcommand\indexmark{\markboth{\indexname}{\indexname}}%
+  \renewcommand\sectionmark[1]{\markright{##1}}%
+  \renewcommand\subsectionmark[1]{\markright{##1}}%
+  \renewcommand\subsubsectionmark[1]{\markright{##1}}%
+  % \renewcommand{\@evenfoot}{%						% Set footer on normal, even  pages
+  % 	\normalsize\slshape \today\hfil \upshape %	% Left footer text
+  % 	\footerText}								% Right footer text
+  % \renewcommand{\@oddfoot}{\@evenfoot}			% Set odd pages footer equal even
+}
+\makeatother							% End speciel macro
+
+\copypagestyle{plain}{ase_report}		% Copy style
+\makeoddhead{plain}{}{}{}				% Remove header text
+\makeevenhead{plain}{}{}{}				% Remove header text
+
+\aliaspagestyle{chapter}{plain}			% Create alias of style 'plain' for 'chapter'
+
+\pagestyle{ase_report} 					% Apply style to document
+
+%--------------------------------------------------------------------------%
+%--------------------- HEADING - SECTION ----------------------------------%
+%--------------------------------------------------------------------------%
+
+\newcommand{\ruledsec}[1]{%
+  \Large\bfseries\sffamily\raggedright #1
+  \color{ase_blue}\rule[15pt]{\textwidth}{1.0pt}} % Section with ruler
+\setsecheadstyle{\ruledsec} % Define section head style
+
+\setfloatlocations{figure}{htp}
+\setfloatlocations{table}{htp}
+
+%--------------------------------------------------------------------------%
+%--------------------- HEADING - SUBs-SECTION -----------------------------%
+%--------------------------------------------------------------------------%
+
+\addtocounter{secnumdepth}{2} % Depth numbering
+
+%\setsubsecheadstyle{\large\bfseries\sffamily\raggedright}
+% \setsubsubsecheadstyle{\Large\bfseries\sffamily\raggedright}
+
+\setsechook{\hangsecnum} % Hang the section number in margin
+%\setsubsechook{\defaultsecnum} % Don't do this on the subsections
+%\setsubsubsechook{\defaultsecnum}
+\setaftersecskip{5pt} % Default skip between the section and text
+\chapterprecistoc{Text in TOC} %Text Under TOC Headline
+
+\addto\captionsenglish{
+  %\renewcommand*{\cftchaptername}{Chapter{\space}}
+  \renewcommand*{\cftfigurename}{Fig.{\space}}
+  \renewcommand*{\contentsname}{Table of Contents}
+  \renewcommand*{\abstractname}{Abstract}
+  \renewcommand*{\listfigurename}{List{\space}of{\space}Figures}
+  \renewcommand*{\listtablename}{List{\space}of{\space}Tables}
+  \renewcommand*{\appendixtocname}{Appendices}
+  \renewcommand*{\appendixpagename}{Appendices}
+}
+
+\addto\captionsdanish{
+  %\renewcommand*{\cftchaptername}{Kapitel\space}
+  \renewcommand*{\cftfigurename}{Fig.\space}
+  \renewcommand*{\abstractname}{Resumé}
+  \renewcommand*{\contentsname}{Indholdsfortegnelse}
+  \renewcommand*{\listfigurename}{Liste{\space}af{\space}Figurer}
+  \renewcommand*{\listtablename}{Liste{\space}af{\space}Tabeller}
+  \renewcommand*{\appendixtocname}{Appendikser}
+  \renewcommand*{\appendixpagename}{Appendikser}
+}
+%------------------------%
+%---- CHAPTER STYLE -----%
+%------------------------%
+\makechapterstyle{ase_chapterstyle}{
+  \setlength{\beforechapskip}{10pt}
+  \setlength{\afterchapskip}{0.5cm}
+  \renewcommand*{\printchaptername}{}
+  \renewcommand*{\chapnumfont}{\normalfont\sffamily\bfseries\fontsize{60}{0}\selectfont}
+  \renewcommand*{\printchapternum}{
+    \flushright
+    \begin{tikzpicture}
+      \draw[fill,color=ase_blue] (0,0) rectangle (2cm,2cm);
+      \draw[color=white] (1cm,1cm) node { \chapnumfont\thechapter };
+    \end{tikzpicture}
+  }
+  \renewcommand*{\chaptitlefont}{\normalfont\sffamily\Huge\bfseries\color{ase_blue}}
+  \renewcommand*{\printchaptertitle}[1]{%
+    \raggedright\chaptitlefont\parbox[t]{\textwidth}{\raggedright##1}}
+}
+
+\chapterstyle{ase_chapterstyle}
+
+
+%--------------------------------------------------------------------------%	
+%------------------------- FRONTPAGE - PROPERTIES -------------------------%
+%--------------------------------------------------------------------------%
+
+\usepackage{soul} % Letterspace package
+\sodef\an{}{0.05em}{.5em plus.6em}{1em plus.1em minus.1em}
+\newcommand\stext[1]{\an{\scshape#1}}
+\newcommand{\logoHuge}{\fontsize{0.55cm}{0.8cm}\selectfont}
+\newcommand{\SuperHuge}{\fontsize{1.2cm}{1.8cm}\selectfont}
+
+
+%--------------------------------------------------------------------------%
+%------------------------- TOC - PROPERTIES -------------------------------%
+%--------------------------------------------------------------------------%
+
+\raggedbottomsectiontrue 		% The page may not be strected on page breaks
+\setsecnumdepth{subsubsection} 	% Set section depth in the TOC
+\maxsecnumdepth{subsubsection} 	% Max of section depth in the TOC
+\settocdepth{subsection} 		% Up to and including subsection
+
+\setlength{\cftbeforechapterskip}{1.0em plus 0.1em minus 0.1em} % Space from chapters
+
+
+%---------------------------------------------------------------------------%
+%------------------------------ MATH Libraries -----------------------------%
+%---------------------------------------------------------------------------%
+% http://ctan.mirrorcatalogs.com/macros/latex/contrib/siunitx/siunitx.pdf
+\usepackage{ulem} % Underlining of words with various line types
+
+% Example of use:
+% \uuline{result} for double lines under a result
+
+\usepackage{amsmath}	% Allows math mode
+\usepackage{amsfonts}	% Speciel character when writing in math mode
+\usepackage{amssymb}	% Speciel symbols for math mode
+\usepackage{mathtools}	% Extra features to the mathematical notation
+\usepackage[binary-units=true]{siunitx}	% SI units. See link above
+
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+% Example of usage:
+%-------------------------------
+% $x = \ceil{2.4} = 3$
+% $x = \floor{2.4} = 2$
+%-------------------------------
+
+
+
+%---------------------------------------------------------------------------%
+%------------------------------ LstListing ---------------------------------%
+%---------------------------------------------------------------------------%
+
+% Følgende er til koder.
+%----------------------------------------------------------
+%\begin{lstlisting}[caption=Overskrift på boks, style=Code-C++, label=lst:referenceLabel]
+%public void hello(){}
+%\end{lstlisting}
+%----------------------------------------------------------
+
+% Exstra space
+\usepackage{xspace}
+% Name on the box followed by \xspace will give the name, a space, and the number.
+% Edit title of \codeTitle, if another title is wanted.
+\newcommand{\codeTitle}{Code snippet\xspace}
+
+% Packages for lstlisting
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textcomp}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+
+\renewcommand{\lstlistingname}{\codeTitle} % Set the new title of the box
+
+\lstdefinestyle{Code}
+{
+%	aboveskip		= {1.5\baselineskip},
+ 	backgroundcolor = \color{lbcolor},
+	basicstyle		= \small\ttfamily,
+	breakatwhitespace= false,
+	breaklines		= true,
+  	columns			= fixed,
+	commentstyle	= \color{darkgreen},
+	emphstyle		= \color{red}\bfseries,
+  	extendedchars	= true,
+	frame 			= lines,
+	framexrightmargin	= 0pt, %6pt
+	identifierstyle	= \ttfamily,
+	keywordstyle	= \color{darkviolet}\bfseries,
+	lineskip		= 1pt,
+	literate 		= {~}{$\sim$}1 {æ}{\ae}1 {ø}{\oe}1 {å}{\aa}1 {Æ}{\AE}1 {Ø}{\OE}1 
+{Å}{\AE}1,
+	morecomment		= [s][\color{lightblue}]{/**}{*/},
+	numbers			= left, % Want numbers? If not, outcomment this line
+	numbersep		= 6pt,
+	numberstyle		= \footnotesize,
+	prebreak 		= \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	showstringspaces= false,
+	stepnumber		= 2,
+	stringstyle		= \color{darkblue},
+	tabsize			= 2,
+%	upquote			= true,
+}
+
+%Width needed for the frame - this must be 6 pt
+\usepackage{calc}
+
+
+% Styles for different code languages.
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}%
+{\colorbox[cmyk]{0.43, 0.35, 0.35,0.35}{\parbox{\textwidth - \marginparsep}{\hspace{5pt}#1#2#3}}}
+
+\captionsetup[lstlisting]
+{
+	format			= listing,
+	labelfont		= white,
+	textfont		= white, 
+	singlelinecheck	= false, 
+	width			= \textwidth - \marginparsep,
+	margin			= 0pt, 
+	font			= {bf,footnotesize}
+}
+
+\lstdefinestyle{Code-C} 	{language = C, 			style=Code}
+\lstdefinestyle{Code-Java} 	{language = Java, 		style=Code}
+\lstdefinestyle{Code-C++} 	{language = [Visual]C++,style=Code}
+\lstdefinestyle{Code-VHDL} 	{language = VHDL, 		style=Code}
+\lstdefinestyle{Code-Bash} 	{language = Bash,  		style=Code}
+\lstdefinestyle{Code-Matlab}{language = Matlab,		style=Code}
+\lstdefinestyle{Code-Prolog}{language = Prolog,		style=Code}
