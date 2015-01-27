@@ -3,17 +3,19 @@
 %---------------------------------------------------------------------------%
 \usepackage[english, danish]{babel} % Language package
 
-\usepackage[utf8]{inputenc}     % Input encoding - Depending on editor
-\usepackage{lmodern}        % Modern LaTeX font
-\usepackage[T1]{fontenc}      % Hyphenation
-\usepackage{textcomp}         % Symbols package
-\usepackage{gensymb}        % Provides generic commands \degree, \celsius, \perthousand, \micro and \ohm
-% \usepackage{ragged2e,anyfontsize}   % Adjust text
-\usepackage{relsize}        % Relativ font size change
+\usepackage[utf8]{inputenc}       % Input encoding - Depending on editor
+\usepackage{lmodern} \normalfont  % Modern LaTeX font. Will load T1lmr.fd
+\usepackage[T1]{fontenc}          % Hyphenation
+\usepackage{textcomp}             % Symbols package
+\usepackage{gensymb}              % Provides generic commands \degree, \celsius, \perthousand, \micro and \ohm
+\usepackage{relsize}              % Relativ font size change
 
 
-\setlength\parindent{0pt}       % No indent
-\setlength\parskip{12pt}      % More than a single line break will give ONE linebreak.
+\setlength\parindent{0pt}         % No indent
+\setlength\parskip{12pt}          % More than a single line break will give ONE linebreak.
+
+\DeclareFontShape{T1}{lmr}{bx}{sc}%
+{ <-> ssub * cmr/bx/sc }{}        % Frontpage, bold font
 
 
 
@@ -138,6 +140,10 @@
 \usepackage{epstopdf}     % EMF to PDF conversion
 \usepackage{fixltx2e}     % Fixes errors in the LaTeX-kernel
 \usepackage{etex}         % Typesetting to replace TeX3
+
+% \usepackage[retainorgcmds]{IEEEtrantools}       % For official IEEE look
+\usepackage{pstricks,pst-node,pst-text,pst-3d}  % For 3D graphic and text
+\usepackage{marginnote}                         % Additional compatibility with \marginpar
 
 
 
@@ -381,12 +387,18 @@ subrefformat=parens}
 
 \chapterstyle{ase_chapterstyle}
 
+\usepackage{titletoc, titlesec} % Parameters to sections and the TOC
+% \usepackage{titletoc}
+
+
+
 
 %--------------------------------------------------------------------------%  
 %------------------------- FRONTPAGE - PROPERTIES -------------------------%
 %--------------------------------------------------------------------------%
 
-\usepackage{soul} % Letterspace package
+\usepackage{soul}       % Letterspace package
+
 \sodef\an{}{0.05em}{.5em plus.6em}{1em plus.1em minus.1em}
 \newcommand\stext[1]{\an{\scshape#1}}
 \newcommand{\logoHuge}{\fontsize{0.55cm}{0.8cm}\selectfont}
@@ -397,10 +409,10 @@ subrefformat=parens}
 %------------------------- TOC - PROPERTIES -------------------------------%
 %--------------------------------------------------------------------------%
 
-\raggedbottomsectiontrue    % The page may not be strected on page breaks
+\raggedbottomsectiontrue        % The page may not be strected on page breaks
 \setsecnumdepth{subsubsection}  % Set section depth in the TOC
 \maxsecnumdepth{subsubsection}  % Max of section depth in the TOC
-\settocdepth{subsection}    % Up to and including subsection
+\settocdepth{subsection}        % Up to and including subsection
 
 \setlength{\cftbeforechapterskip}{1.0em plus 0.1em minus 0.1em} % Space from chapters
 
